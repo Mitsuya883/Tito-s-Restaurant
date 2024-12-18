@@ -1,0 +1,34 @@
+<form>
+    <input type="text" id="nombre" placeholder="Nombre">
+    <input type="number" id="precio" placeholder="Precio">
+    <textarea id="descripcion" placeholder="Descripción"></textarea>
+    <input type="text" id="categoria" placeholder="Categoría">
+    <button type="button" id="guardar">Guardar</button>
+</form>
+<script type="module" src="firebase.js"></script>
+
+
+<script>
+document.getElementById('form-producto').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch('api/guardar_producto.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        if (data.status === 'success') {
+            location.reload(); // Recargar la página si es exitoso
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Ocurrió un error al guardar el producto.');
+    });
+});
+</script>
+

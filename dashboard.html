@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITO'S Restaurant</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .header-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(50%);
+        }
+
+        /* Título Principal */
+        .title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3.5em;
+            color: #39FF14; /* Verde neón */
+            font-weight: bold;
+            text-shadow: 4px 4px 20px rgba(0, 0, 0, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-align: center;
+            animation: glow 2s infinite alternate;
+        }
+
+        /* Subtítulo adicional */
+        .subtitle {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+            color: #f5f5f5;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            font-style: italic;
+        }
+
+        /* Efecto de animación "Glow" */
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 30px #39FF14, 0 0 40px #39FF14;
+            }
+            to {
+                text-shadow: 0 0 20px #32cc16, 0 0 30px #32cc16, 0 0 40px #32cc16, 0 0 50px #32cc16;
+            }
+        }
+
+        .button-container {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+        }
+
+        .button {
+            width: 60px;
+            height: 60px;
+            border: none;
+            background-color: #f5f5f5;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            color: #333;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .button:hover {
+            background-color: #e0e0e0;
+            transform: scale(1.1);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://img.pystatic.com/products/9f724672-8a56-4d3c-b9dd-a5e5275a0ab9.jpg" alt="Encabezado" class="header-image">
+        <div class="title">¡Bienvenido a Tito's Restaurant!</div>
+        <div class="subtitle">Sabores que te harán volver siempre</div>
+    </header>
+
+    <div class="button-container">
+        <!-- Botón con imagen de casa -->
+        <button class="button" onclick="window.location.href='dashboard.html'">
+            <img src="https://thumbs.dreamstime.com/b/home-icon-simple-flat-style-ui-design-home-icon-simple-flat-style-ui-design-107274076.jpg" alt="Home" style="width: 40px; height: 40px; border-radius: 50%;">
+        </button>
+        
+        <!-- Botón de mesa con ícono de Font Awesome -->
+        <button class="button" onclick="window.location.href='table.html'">
+            <img src="https://c0.klipartz.com/pngpicture/193/843/gratis-png-mesa-redonda-con-sillas-ilustracion-mesa-redonda-silla-comedor-stock-photography-vista-superior.png" alt="Table" style="width: 40px; height: 40px; border-radius: 50%">
+        </button>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista de Mesa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #3d374c;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Título Principal con Efecto */
+        .title {
+            text-align: center;
+            color: #39FF14; /* Verde Neón */
+            font-size: 3.5em;
+            font-weight: bold;
+            text-shadow: 4px 4px 20px rgba(0, 0, 0, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin: 20px 0;
+            animation: glow 2s infinite alternate;
+        }
+
+        /* Animación de Glow */
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 30px #39FF14, 0 0 40px #39FF14;
+            }
+            to {
+                text-shadow: 0 0 20px #32cc16, 0 0 30px #32cc16, 0 0 40px #32cc16, 0 0 50px #32cc16;
+            }
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .table {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .table:hover {
+            transform: scale(1.1) translateY(-10px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .table img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .table-text {
+            color: #333;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .button-container {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .button {
+            width: 60px;
+            height: 60px;
+            border: none;
+            background-color: #f5f5f5;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            color: #333;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Título -->
+    <h1 class="title">TITO'S Restaurant</h1>
+
+    <!-- Contenedor de Mesas -->
+    <div class="container">
+        <div class="table" onclick="selectTable(1)">
+            <img src="https://http2.mlstatic.com/mesa-de-madera-mas-4-personas-sillas-uso-rudo-restaurante-bar-cafe-sin-barniz-comedor-hogar-muebles-vanely-desayunador-D_NQ_NP_617575-MLM40177930464_122019-F.jpg" alt="Mesa 1">
+            <p class="table-text">MESA 1</p>
+        </div>
+
+        <div class="table" onclick="selectTable(2)">
+            <img src="https://http2.mlstatic.com/mesa-de-madera-mas-4-personas-sillas-uso-rudo-restaurante-bar-cafe-sin-barniz-comedor-hogar-muebles-vanely-desayunador-D_NQ_NP_617575-MLM40177930464_122019-F.jpg" alt="Mesa 2">
+            <p class="table-text">MESA 2</p>
+        </div>
+
+        <div class="table" onclick="selectTable(3)">
+            <img src="https://http2.mlstatic.com/mesa-de-madera-mas-4-personas-sillas-uso-rudo-restaurante-bar-cafe-sin-barniz-comedor-hogar-muebles-vanely-desayunador-D_NQ_NP_617575-MLM40177930464_122019-F.jpg" alt="Mesa 3">
+            <p class="table-text">MESA 3</p>
+        </div>
+
+        <div class="table" onclick="selectTable(4)">
+            <img src="https://http2.mlstatic.com/mesa-de-madera-mas-4-personas-sillas-uso-rudo-restaurante-bar-cafe-sin-barniz-comedor-hogar-muebles-vanely-desayunador-D_NQ_NP_617575-MLM40177930464_122019-F.jpg" alt="Mesa 4">
+            <p class="table-text">MESA 4</p>
+        </div>
+    </div>
+
+    <!-- Botones inferiores -->
+    <div class="button-container">
+        <button class="button" onclick="window.location.href='dashboard.html'">
+            <img src="https://thumbs.dreamstime.com/b/home-icon-simple-flat-style-ui-design-home-icon-simple-flat-style-ui-design-107274076.jpg" alt="Home" style="width: 40px; height: 40px; border-radius: 50%;">
+        </button>
+        
+        <button class="button" onclick="window.location.href='table.html'">
+            <img src="https://c0.klipartz.com/pngpicture/193/843/gratis-png-mesa-redonda-con-sillas-ilustracion-mesa-redonda-silla-comedor-stock-photography-vista-superior.png" alt="Table" style="width: 40px; height: 40px; border-radius: 50%;">
+        </button>
+    </div>
+
+    <script>
+        function selectTable(tableNumber) {
+    localStorage.setItem('mesa', tableNumber); // Guarda la mesa seleccionada
+    window.location.href = `carta.html`;       // Redirige a carta.html
+}
+    </script>
+</body>
+</html>

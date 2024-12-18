@@ -1,0 +1,160 @@
+/* Fondo de la app */
+body {
+    background: linear-gradient(135deg, #121212, #1e2a47); /* Degradado de negro a azul oscuro */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Para asegurar que cubre toda la pantalla */
+}
+
+/* Estilo del encabezado */
+header {
+    width: 100%;
+    height: 200px; /* Altura del encabezado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative; /* Permite posicionar elementos dentro de él */
+}
+
+/* Estilo de la imagen en el encabezado */
+.header-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hace que la imagen cubra todo el área sin distorsionarse */
+}
+
+/* Estilo del contenido */
+.content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 35%; /* Ajusta la altura al área deseada */
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+  }
+  
+  /* Estilo del texto "Regístrate" */
+  h1 {
+    color: #fff; /* Texto blanco */
+    font-size: 36px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0; /* Elimina márgenes */
+  } 
+
+ /* Estilo del contenedor del campo */
+.form-group {
+    width: 100%; /* Hace que el campo se adapte */
+    max-width: 300px; /* Ancho máximo del campo */
+    display: flex;
+    flex-direction: column; /* Apila texto y campo */
+    margin-top: 150px; /* Mueve el campo hacia abajo */
+}
+
+/* Estilo del texto del label */
+label {
+    font-size: 16px; /* Tamaño de la fuente */
+    font-weight: 500; /* Grosor del texto */
+    margin-bottom: 5px; /* Espacio entre el label y el campo */
+    color: #fff; /* Color blanco para texto */
+}
+
+/* Estilo del campo de entrada */
+input[type="text"] {
+    font-size: 14px; /* Tamaño de texto */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Bordes grises */
+    border-radius: 5px; /* Bordes redondeados */
+    width: 100%; /* Hace que ocupe el ancho del contenedor */
+    box-sizing: border-box; /* Asegura que padding y border se incluyan */
+}
+
+/* Estilo al hacer foco en el campo */
+input[type="text"]:focus {
+    border-color: #007bff; /* Color del borde al hacer foco */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra azul */
+}
+
+/* Estilo específico para el segundo campo */
+#nombredesuario {
+    margin-top: 20px; /* Ajusta la distancia entre los campos */
+}
+
+/* Contenedor principal del formulario */
+.form-container {
+    display: flex;
+    flex-direction: column; /* Alinea elementos en columna */
+    align-items: center;
+    margin-top: 160px; /* Ajusta la posición del formulario */
+}
+
+/* Ajustar márgenes de los campos */
+.form-group {
+    margin-top: 10px; /* Reduce espacio vertical entre los campos */
+}
+
+input[type="password"] {
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="password"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Estilo del botón */
+.btn-register {
+    font-size: 16px; /* Tamaño del texto */
+    font-weight: bold; /* Texto en negrita */
+    color: #fff; /* Color del texto */
+    background-color: #007bff; /* Color de fondo */
+    border: none; /* Sin bordes */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    margin-top: 15px; /* Separación respecto al campo anterior */
+}
+
+.btn-register:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+}
+
+/* Estilo del contenedor del pie del formulario */
+.form-footer {
+    display: flex; /* Coloca elementos en línea */
+    justify-content: center; /* Centra el contenido */
+    align-items: center; /* Alinea verticalmente */
+    margin-top: 20px; /* Espacio respecto al botón */
+    font-size: 14px; /* Tamaño del texto */
+    color: #fff; /* Color del texto */
+}
+
+/* Estilo para el enlace de "Inicia Sesión" */
+.btn-login-link {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-login-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+
+
+
+
+
+
+  
+  

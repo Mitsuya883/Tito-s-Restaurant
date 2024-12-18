@@ -1,0 +1,271 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CARTA</title>
+        <style>
+            
+            body {
+                background-color: #322741;
+                margin: 0;
+                font-family: Arial, sans-serif;
+                color: #fff;
+            }
+
+            h1 {
+                text-align: center;
+                color: white;
+                margin-top: 20px;
+                font-size: 2.5em;
+            }
+
+            /* Fecha de atrás */
+            .back-arrow {
+            position: absolute;
+            top: 3%;
+            left: 20px;
+            transform: translateY(-50%);
+            font-size: 1.5em;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-arrow:hover{
+            color: #39FF14;
+        }
+
+            .category-bar {
+                display: flex;
+                justify-content: center;
+                background-color: #7e5a3c;
+                padding: 10px;
+                gap: 10px;
+            }
+
+            .category-button {
+                background-color: white;
+                color: #333;
+                border: none;
+                padding: 10px 20px;
+                font-size: 1em;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+
+            .category-button:hover {
+                background-color: #39FF14;
+                color: white;
+            }
+
+            .product-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin: 20px auto;
+                gap: 20px;
+            }
+
+            .product-card {
+                background-color: #231e2e;
+                width: 250px;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+                padding: 15px;
+                text-align: center;
+            }
+
+            .product-image {
+                background-color: #ccc;
+                border-radius: 10px;
+                width: 100%;
+                height: 250px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.5em;
+                color: #666;
+            }
+
+            .product-title {
+                color: #39FF14;
+                font-size: 1.2em;
+                margin: 10px 0;
+                font-weight: bold;
+            }
+
+            .product-comment {
+                width: 90%;
+                margin: 10px auto;
+                padding: 5px;
+                border-radius: 5px;
+                border: none;
+            }
+
+            .price-input {
+                width: 60%;
+                padding: 5px;
+                text-align: center;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                margin: 5px auto;
+            }
+
+            .add-button {
+                background-color: #39FF14;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+
+            .add-button:hover {
+                background-color: #32cc16;
+            }
+
+            .cart-button {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: none;
+                border: none;
+                font-size: 1.5em;
+                cursor: pointer;
+                color: white;
+                transition: color 0.3s ease;
+            }
+
+            .cart-button:hover {
+                color: #39FF14;
+            }
+        </style>
+    </head>
+    <body>
+        <!--Flecha de atrás -->
+        <h1>
+            <a href="table.html" class="back-arrow">
+                &#8592;
+            </a>
+            
+        <h1>CARTA</h1>
+
+        <!-- Mostrar número de mesa -->
+        <div id="mesa-info" class="mesa-info"></div>
+
+        <button class="cart-button" onclick="goToCart()">🛒</button>
+
+        <div class="category-bar">
+            <button class="category-button" onclick="showCategory('fuertes')">Fuertes</button>
+            <button class="category-button" onclick="showCategory('hamburguesas')">Hamburguesas</button>
+            <button class="category-button" onclick="showCategory('caldos')">Caldos</button>
+        </div>
+
+        <div id="product-container" class="product-container"></div>
+
+        <script>
+            // Obtener el número de mesa desde la URL
+            function guardarNumeroMesa() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const mesa = urlParams.get('mesa'); // Obtén la mesa de la URL
+
+    if (mesa) {
+        localStorage.setItem('mesa', mesa); // Guarda el número de mesa en localStorage
+        console.log("Mesa seleccionada:", mesa); // Verificación en consola
+    }
+}
+
+// Llamar a la función al cargar la página
+window.onload = () => {
+    guardarNumeroMesa();
+    showCategory('fuertes'); // Cargar la categoría por defecto
+};
+
+
+
+        const products = {
+        fuertes: [
+            { nombre: "Salchipapa", precio: "5.50", imagen: "https://imag.bonviveur.com/emplatado-final-de-las-salchipapas.jpg" },
+            { nombre: "Salchipollo", precio: "10.00", imagen: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjmVvwlJRuauAz4FOaKSRwmUuTJHaommDEs95HAFCx7W3P0EWrld9s34vm1uNshWQsetbrwXlx4VgFFgjo8JUlAb3o0rig58xqZ_HaNla-E0w3FpvUChmP6DHcyXGJX6QdpnrnQa1Vo0-rYjPn9bv-uZepDlXIfldGYqj23n-yu-FZ4XL71cijQVJyBzw/s612/istockphoto-531279991-612x612.jpg" },
+            { nombre: "Broaster", precio: "11.00", imagen: "https://www.paulinacocina.net/wp-content/uploads/2024/01/pollo-a-la-broaster-Paulina-Cocina-Recetas-1722251878.jpg" },
+            { nombre: "Chuleta", precio: "13.00", imagen: "https://wp-s.ru/wallpapers/1/10/521497114925074/deliciosas-papas-fritas-con-chuleta-y-lechuga.jpg" },
+            { nombre: "Churrasco", precio: "15.00", imagen: "https://caracoltv.brightspotcdn.com/dims4/default/6a642ec/2147483647/strip/false/crop/1920x1080+0+0/resize/1200x675!/format/webp/quality/90/?url=http%3A%2F%2Fcaracol-brightspot.s3.us-west-2.amazonaws.com%2F4b%2F0b%2F791c01d846baa7722b3042ba4187%2Funtitled-design-21.jpg" },
+            { nombre: "Saltados", precio: "15.00", imagen: "https://comedera.com/wp-content/uploads/sites/9/2021/08/tallarines-saltados-peruanos.jpg" },
+            { nombre: "Pollo a la Pancha", precio: "13.00", imagen: "https://express.donangelo.pe/wp-content/uploads/2022/04/WhatsApp-Image-2022-05-28-at-1.26.47-PM-4.jpeg" },
+            { nombre: "Chicharron de Pollo", precio: "19.00", imagen: "https://brasaycarbon.pe/wp-content/uploads/2020/12/chicharron-de-pollo.jpg" },
+        ],
+        hamburguesas: [
+            { nombre: "Hamburguesa Simple", precio: "6.00", imagen: "https://bixiandes.com.co/wp-content/uploads/2024/08/Hamburguesa-sencilla-.webp" },
+            { nombre: "Royal", precio: "7.00", imagen: "https://trigodeoro.com.pe/wp-content/uploads/2023/02/Hamburguesa-royal.png" },
+            { nombre: "Cheeseburger", precio: "7.00", imagen: "https://yopo.pe/wp-content/uploads/2023/10/CHEESEBURGER-1.jpg" },
+            { nombre: "Royalcheese", precio: "8.50", imagen: "https://www.mcdonalds.be/_webdata/product-images/12201658-MCDO_BB-RoyalCheese_Kiosk_500x500px.png" },
+            { nombre: "Filete de Pollo", precio: "8.00", imagen: "https://assets.unileversolutions.com/recipes-v2/231513.jpg" },
+            { nombre: "Filete Royal", precio: "9.00", imagen: "https://tofuu.getjusto.com/orioneat-prod/uMbjAo4hG9QnuB9HB-hamburguesa%20royal.jpg" },
+            { nombre: "Hotdog Royal", precio: "6.00", imagen: "https://royalgulfrestaurant.com/wp-content/uploads/2023/09/HOT-DOG-SAMOON.jpg" },
+            { nombre: "Chorihuevo", precio: "7.00", imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_qV_989I5SpXn2X4KX_GOUCNZiCrj4XO1BA&amp;s" },
+            { nombre: "Chorizo Parillero", precio: "6.00", imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPwBGTC4grK9laID9zfRUehguA8_7wdfN3AQ&amp;s" },
+            { nombre: "Hawaiana", precio: "7.50", imagen: "https://editorialtelevisa.brightspotcdn.com/ce/fa/1ba5b84b489e9a1513d5209793b7/hamburguesa-hawaiana.jpeg" },
+            { nombre: "Especial", precio: "12.00", imagen: "https://images.mrcook.app/recipe-image/0190a709-06f0-72e0-85fe-dc6c30b988bc" }
+        ],
+        caldos: [
+            { nombre: "Caldo de Gallina", precio: "13.00", imagen: "https://img-global.cpcdn.com/recipes/e0ffe1773c9af844/1200x630cq70/photo.jpg" },
+            { nombre: "Aguadito", precio: "5.00", imagen: "https://i.ytimg.com/vi/cB2b99dh5CY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&amp;rs=AOn4CLCUT3tcuQU3rVTq5Gqx1RcjLXwfvA" },
+            { nombre: "Carnero", precio: "16.00", imagen: "https://i.ytimg.com/vi/JdD2Dxq1Qj4/maxresdefault.jpg" },
+            { nombre: "Caldo de Pata", precio: "16.00", imagen: "https://www.recetas-guatemala.com/base/stock/Recipe/172-image/172-image_web.jpg" }
+        ]
+    };
+
+        
+            // Mostrar categoría seleccionada
+            function showCategory(category) {
+            const container = document.getElementById("product-container");
+            container.innerHTML = "";
+
+            products[category].forEach((product, index) => {
+            const productCard = `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${product.imagen}" alt="${product.nombre}" style="width:100%; height:100%; border-radius: 10px;">
+                    </div>
+                    <div class="product-title">${product.nombre}</div>
+                    <textarea class="product-comment" placeholder="Escribe un comentario aquí" id="comment-${category}-${index}"></textarea>
+                    <input class="price-input" type="number" value="${product.precio}" step="0.01" id="price-${category}-${index}">
+                    <button type="button" class="add-button" onclick="addToCart('${product.nombre}', 'comment-${category}-${index}', 'price-${category}-${index}')">Añadir</button>
+                </div>
+            `;
+            container.innerHTML += productCard;
+        });
+    }
+
+            // Guardar productos en el carrito (localStorage)
+            function addToCart(productName, commentId, priceId) {
+                const comment = document.getElementById(commentId).value || "Sin comentario";
+                const price = parseFloat(document.getElementById(priceId).value);
+        
+                if (isNaN(price) || price <= 0) {
+                    alert("Por favor ingresa un precio válido.");
+                    return;
+                }
+        
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+                cart.push({ nombre: productName, comentario: comment, precio: price.toFixed(2) });
+                localStorage.setItem("cart", JSON.stringify(cart));
+        
+                alert("Producto añadido al carrito correctamente.");
+            }
+        
+            // Redirigir a tienda.html
+            function goToCart() {
+                window.location.href = "tienda.html";
+            }
+        
+            // Cargar la primera categoría por defecto
+            window.onload = () => showCategory('fuertes');
+        </script>
+        
+    </body>
+    </html>
